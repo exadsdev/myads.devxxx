@@ -8,15 +8,14 @@ export const dynamic = "force-static";
 
 export const metadata = {
   metadataBase: new URL(SITE),
-  title: `${BRAND} | รับยิงแอดสายเทา ทำโฆษณาออนไลน์ Google & Facebook Ads`,
-  description:
-    `${BRAND} ผู้เชี่ยวชาญโฆษณาสายเทา วางกลยุทธ์ ตั้งค่า Conversion วัดผลครบถ้วน เน้นยอดขายและคุณภาพทราฟฟิก (Google Ads / Facebook Ads)`,
+  title: `${BRAND} | ทำโฆษณาออนไลน์ Google & Facebook Ads`,
+  description: `${BRAND} ผู้เชี่ยวชาญโฆษณาสายเทา วางกลยุทธ์ ตั้งค่า Conversion วัดผลครบถ้วน เน้นยอดขายและคุณภาพทราฟฟิก (Google Ads / Facebook Ads)`,
   alternates: { canonical: SITE },
   openGraph: {
     type: "website",
     url: SITE,
     siteName: BRAND,
-    title: `${BRAND} | รับยิงแอดสายเทา ทำโฆษณาออนไลน์ Google & Facebook Ads`,
+    title: `${BRAND} | ทำโฆษณาออนไลน์ Google & Facebook Ads`,
     description:
       `${BRAND} ผู้เชี่ยวชาญโฆษณาสายเทา วางกลยุทธ์ ตั้งค่า Conversion วัดผลครบถ้วน เน้นยอดขายและคุณภาพทราฟฟิก`,
     images: [
@@ -30,7 +29,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${BRAND} | รับยิงแอดสายเทา ทำโฆษณาออนไลน์ Google & Facebook Ads`,
+    title: `${BRAND} | ทำโฆษณาออนไลน์ Google & Facebook Ads`,
     description:
       `${BRAND} ผู้เชี่ยวชาญโฆษณาสายเทา วางกลยุทธ์ ตั้งค่า Conversion วัดผลครบถ้วน เน้นยอดขายและคุณภาพทราฟฟิก`,
     images: [`${SITE}/images/og-default.jpg`],
@@ -77,8 +76,8 @@ export default function HomePage() {
     "@type": "ImageObject",
     contentUrl: `${SITE}/images/og-default.jpg`,
     url: `${SITE}/images/og-default.jpg`,
-    width: 1200,
-    height: 630,
+    width: 2000,
+    height: 1500,
     caption: `${BRAND} - ตัวอย่างผลงานการทำโฆษณาและแดชบอร์ดสรุปผล`,
   };
 
@@ -118,33 +117,108 @@ export default function HomePage() {
     },
   ];
 
+  // --- Additional Product Rich Result (no duplicates of Website/Breadcrumb) ---
+  function StructuredData() {
+    const productSchema = {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      name: "รับยิงแอดสายเทา",
+      image: [
+        `${SITE}/images/og-default.jpg`,
+        `${SITE}/images/og-default.jpg`,
+      ],
+      description:
+        "รับยิงแอด สายเทา & รับทำโฆษณาสายเทา เริ่มโฆษณาก่อน ชำระเงินทีหลัง ผู้เชี่ยวชาญสายแคมเปญและคอนเวอร์ชัน",
+      brand: {
+        "@type": "Brand",
+        name: "รับยิงแอดสายเทา",
+      },
+      offers: {
+        "@type": "Offer",
+        url: SITE,
+        priceCurrency: "THB",
+        price: "9900",
+        priceValidUntil: "2025-12-31",
+        itemCondition: "https://schema.org/NewCondition",
+        availability: "https://schema.org/InStock",
+        seller: {
+          "@type": "Organization",
+          name: "รับยิงแอดสายเทา",
+          url: SITE,
+          logo: LOGO_URL,
+        },
+      },
+    };
+
+    return (
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+    );
+  }
+
   return (
     <>
+      <StructuredData />
 
       <nav className="container" aria-label="เมนูหลัก">
         <ul className="nav">
-          <li><Link href="/" prefetch>หน้าแรก</Link></li>
-          <li><Link href="/services" prefetch>บริการ</Link></li>
-          <li><Link href="/services/google-ads" prefetch>Google Ads</Link></li>
-          <li><Link href="/services/facebook-ads" prefetch>Facebook Ads</Link></li>
-                <Link href="/course">คอร์สเรียนยิงAds</Link>
-          <li><Link href="/video" prefetch>Video</Link></li>
-          <li><Link href="/posts" prefetch>FAQ</Link></li>
-          <li><Link href="/contact" prefetch>ติดต่อเรา</Link></li>
+          <li>
+            <Link href="/" prefetch>
+              หน้าแรก
+            </Link>
+          </li>
+          <li>
+            <Link href="/services" prefetch>
+              บริการ
+            </Link>
+          </li>
+          <li>
+            <Link href="/services/google-ads" prefetch>
+              Google Ads
+            </Link>
+          </li>
+          <li>
+            <Link href="/services/facebook-ads" prefetch>
+              Facebook Ads
+            </Link>
+          </li>
+          <li>
+            <Link href="/course" prefetch>
+              คอร์สเรียนยิงAds
+            </Link>
+          </li>
+          <li>
+            <Link href="/video" prefetch>
+              Video
+            </Link>
+          </li>
+          <li>
+            <Link href="/posts" prefetch>
+              FAQ
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact" prefetch>
+              ติดต่อเรา
+            </Link>
+          </li>
         </ul>
       </nav>
 
       {/* HERO */}
       <header className="hero container" aria-labelledby="hero-title">
         <div className="hero__text">
-          <h1 id="hero-title" className="mb-2"> 
-            <strong> รับยิงแอด สายเทา</strong> & รับทำโฆษณาสายเทา <br />
+          <h1 id="hero-title" className="mb-2">
+            <strong>รับยิงแอด สายเทา</strong> & รับทำโฆษณาสายเทา <br />
             ครอบคลุม Google Ads และ Facebook Ads
           </h1>
           <p className="text-muted">
-            เริ่มโฆษณาก่อน ชำระเงินทีหลัง  ผู้เชี่ยวชาญสายแคมเปญและคอนเวอร์ชัน วิเคราะห์คำค้น/ออดิเอนซ์
-            วางโครงสร้างคอนเทนต์เพื่อ SEO และเสริมความน่าเชื่อถือด้วย
-            Structured Data เพื่อโอกาสเกิดรูปตัวอย่างและ Sitelinks บน Google <strong> รับยิงแอด สายเทา</strong>
+            เริ่มโฆษณาก่อน ชำระเงินทีหลัง ผู้เชี่ยวชาญสายแคมเปญและคอนเวอร์ชัน
+            วิเคราะห์คำค้น/ออดิเอนซ์ วางโครงสร้างคอนเทนต์เพื่อ SEO และเสริมความน่าเชื่อถือด้วย
+            Structured Data เพื่อโอกาสเกิดรูปตัวอย่างและ Sitelinks บน Google{" "}
+            <strong>รับยิงแอด สายเทา</strong>
           </p>
 
           <div className="btn-row">
@@ -158,8 +232,12 @@ export default function HomePage() {
 
           <ul className="meta" aria-label="จุดเด่นบริการ">
             <li>ขึ้นแอดโฆษณา ชำระเงินภายหลัง</li>
-            <li><strong> รับยิงแอด สายเทา</strong>Googleสายเทา</li>
-            <li><strong> รับยิงแอด สายเทา</strong>Facebookสายเทา</li>
+            <li>
+              <strong>รับยิงแอด สายเทา</strong> Google สายเทา
+            </li>
+            <li>
+              <strong>รับยิงแอด สายเทา</strong> Facebook สายเทา
+            </li>
           </ul>
         </div>
 
@@ -179,13 +257,15 @@ export default function HomePage() {
       {/* PACKAGES */}
       <section className="section container" aria-labelledby="pkg-title">
         <h2 id="pkg-title" className="mb-3">
-          แพ็กเกจยอดนิยมสำหรับธุรกิจสายเทา <strong> รับยิงแอด สายเทา</strong>
+          แพ็กเกจยอดนิยมสำหรับธุรกิจสายเทา <strong>รับยิงแอด สายเทา</strong>
         </h2>
 
         <div className="cards-grid">
           <article className="card" itemScope itemType="https://schema.org/Service">
             <header>
-              <h3 itemProp="name"><strong>🌎 รับยิงแอด สายเทา</strong>Google Ads สายเทา</h3>
+              <h3 itemProp="name">
+                <strong>🌎 รับยิงแอด สายเทา</strong> Google Ads สายเทา
+              </h3>
             </header>
             <p itemProp="description">
               ค้นหาตรงกลุ่ม เพิ่มโอกาสแปลงเป็นลูกค้า
@@ -196,13 +276,15 @@ export default function HomePage() {
               ราคา: 12,900 บาท/เดือน
             </p>
             <Link className="btn w-100" href="/services/google-ads" prefetch>
-            ✔ รายละเอียด
+              ✔ รายละเอียด
             </Link>
           </article>
 
           <article className="card" itemScope itemType="https://schema.org/Service">
             <header>
-              <h3 itemProp="name"><strong> ☑ รับยิงแอด สายเทา</strong>Facebook Ads สายเทา</h3>
+              <h3 itemProp="name">
+                <strong>☑ รับยิงแอด สายเทา</strong> Facebook Ads สายเทา
+              </h3>
             </header>
             <p itemProp="description">
               เข้าถึงผู้สนใจด้วยครีเอทีฟและ Conversion API
@@ -213,13 +295,15 @@ export default function HomePage() {
               ราคา: 9,900 บาท/เดือน
             </p>
             <Link className="btn w-100" href="/services/facebook-ads" prefetch>
-             💥 รายละเอียด
+              💥 รายละเอียด
             </Link>
           </article>
 
           <article className="card">
             <header>
-              <h3><strong>✔ รับยิงแอด สายเทา</strong>SEO + Content</h3>
+              <h3>
+                <strong>✔ รับยิงแอด สายเทา</strong> SEO + Content
+              </h3>
             </header>
             <p>
               วางโครงสร้างคอนเทนต์ภายในเว็บ
@@ -227,41 +311,37 @@ export default function HomePage() {
               สร้าง FAQ, Services Page และ Internal Linking
             </p>
             <Link className="btn w-100" href="/faq" prefetch>
-             👂 ดู FAQ
+              👂 ดู FAQ
             </Link>
           </article>
 
-
-           <article className="card">
+          <article className="card">
             <header>
               <h3>🟢 คอร์สเรียนยิงAds สายเทา</h3>
             </header>
             <p>
-            บริการคอร์สเรียนทำการตลาดออนไลน์
+              บริการคอร์สเรียนทำการตลาดออนไลน์
               <br />
-           คอร์สเรียนทำโฆษณา Google, Facebook สายเทา
+              คอร์สเรียนทำโฆษณา Google, Facebook สายเทา
             </p>
             <Link className="btn w-100" href="/course" prefetch>
-             👀 ดูคอร์สเรียน
+              👀 ดูคอร์สเรียน
             </Link>
           </article>
 
-           <article className="card">
+          <article className="card">
             <header>
-              <h3>▶Video สอนยิงแอด สายเทา</h3>
+              <h3>▶ Video สอนยิงแอด สายเทา</h3>
             </header>
             <p>
-            Video สอนยิงแอด สายเทา ฟรี ความรู้ดีดีเรามีให้
+              Video สอนยิงแอด สายเทา ฟรี ความรู้ดีๆ เรามีให้
               <br />
-          สอนทำโฆษณา Google,Facebook สายเทา  
+              สอนทำโฆษณา Google, Facebook สายเทา
             </p>
             <Link className="btn w-100" href="/posts" prefetch>
-             ▶ดูVideo สอนฟรี
+              ▶ ดู Video สอนฟรี
             </Link>
           </article>
-
-
-
         </div>
       </section>
 
@@ -289,7 +369,8 @@ export default function HomePage() {
           <div>
             <h2 className="h4">เริ่มต้นวางแผนโฆษณาให้ธุรกิจของคุณ</h2>
             <p className="text-muted">
-              คุยรายละเอียด เป้าหมาย งบประมาณ และกลยุทธ์ที่เหมาะสม เริ่มโฆษณาก่อน ชำระเงินทีหลัง<strong> รับยิงแอด สายเทา</strong>
+              คุยรายละเอียด เป้าหมาย งบประมาณ และกลยุทธ์ที่เหมาะสม เริ่มโฆษณาก่อน ชำระเงินทีหลัง{" "}
+              <strong>รับยิงแอด สายเทา</strong>
             </p>
           </div>
           <div className="btn-row">
@@ -305,7 +386,7 @@ export default function HomePage() {
 
       <Secsions />
 
-      {/* Structured Data */}
+      {/* Structured Data (JSON-LD) */}
       <JsonLd json={websiteLd} />
       <JsonLd json={orgLd} />
       <JsonLd json={breadcrumbLd} />

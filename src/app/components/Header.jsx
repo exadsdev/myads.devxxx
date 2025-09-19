@@ -25,11 +25,11 @@ export default function Header() {
           <span>{BRAND}</span>
         </Link>
 
-        {/* Desktop nav */}
+   
         <nav className="navLinks" aria-label="หลัก">
           <Link href="/">หน้าแรก</Link>
           <Link href="/reviews">รีวิวลูกค้า</Link>
-          <Link href="/Postpages">โพล์ต</Link>
+          <Link href="/Postpages">Posts</Link>
           <Link className="nav-link dropdown-toggle" href="Services" role="button" data-bs-toggle="dropdown" aria-expanded="false">  บริการ  </Link>
           <ul className="dropdown-menu">
             <li><Link className="dropdown-item" href="/services">บริการ</Link></li>

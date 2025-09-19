@@ -12,8 +12,8 @@ const nextConfig = {
       { protocol: "https", hostname: "myad-dev.com", pathname: "/**" },
       { protocol: "https", hostname: "www.myad-dev.com", pathname: "/**" },
       { protocol: "https", hostname: "i.ytimg.com", pathname: "/**" },
-      { protocol: "https", hostname: "www.myads.dev", pathname: "/**" },
-      { protocol: "https", hostname: "myads.dev", pathname: "/**" }
+      { protocol: "https", hostname: "www.myad-dev.com", pathname: "/**" },
+      { protocol: "https", hostname: "myad-dev.com", pathname: "/**" }
     ],
     formats: ["image/avif", "image/webp"],
   },
