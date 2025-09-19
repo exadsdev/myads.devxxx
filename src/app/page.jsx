@@ -123,7 +123,6 @@ export default function HomePage() {
 
   return (
     <>
-      {/* NAV */}
       <nav className="container" aria-label="เมนูหลัก">
         <ul className="nav">
           <li><Link href="/" prefetch>หน้าแรก</Link></li>
