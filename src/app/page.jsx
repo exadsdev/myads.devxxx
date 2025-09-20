@@ -35,7 +35,7 @@ export const metadata = {
 };
 
 export default function HomePage() {
-  // === JSON-LD for Home (NO Product on Home) ===
+  // === JSON-LD: WebSite ===
   const websiteLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -53,6 +53,7 @@ export default function HomePage() {
     },
   };
 
+  // === JSON-LD: Organization ===
   const orgLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -61,6 +62,7 @@ export default function HomePage() {
     logo: { "@type": "ImageObject", url: LOGO_URL },
   };
 
+  // === JSON-LD: WebPage ===
   const webPageLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -75,6 +77,7 @@ export default function HomePage() {
     isPartOf: { "@type": "WebSite", url: SITE, name: BRAND },
   };
 
+  // === JSON-LD: Breadcrumb ===
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -83,7 +86,7 @@ export default function HomePage() {
     ],
   };
 
-  // Services (แทน Product)
+  // === JSON-LD: Services (แทน Product สำหรับบริการ) ===
   const servicesLd = [
     {
       "@context": "https://schema.org",
@@ -120,6 +123,49 @@ export default function HomePage() {
       },
     },
   ];
+
+  // === JSON-LD: Product (รวมสคริปต์ที่ส่งมา) ===
+  const productLd = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Executive Anvil",
+    "image": [
+      "https://example.com/photos/1x1/photo.jpg",
+      "https://example.com/photos/4x3/photo.jpg",
+      "https://example.com/photos/16x9/photo.jpg"
+     ],
+    "description": "Sleeker than ACME's Classic Anvil, the Executive Anvil is perfect for the business traveler looking for something to drop from a height.",
+    "sku": "0446310786",
+    "mpn": "925872",
+    "brand": {
+      "@type": "Brand",
+      "name": "ACME"
+    },
+    "review": {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4,
+        "bestRating": 5
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Fred Benson"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.4,
+      "reviewCount": 89
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "offerCount": 5,
+      "lowPrice": 119.99,
+      "highPrice": 199.99,
+      "priceCurrency": "USD"
+    }
+  };
 
   return (
     <>
@@ -249,6 +295,9 @@ export default function HomePage() {
       <JsonLd json={webPageLd} />
       <JsonLd json={breadcrumbLd} />
       {servicesLd.map((s, i) => <JsonLd key={`svc-${i}`} json={s} />)}
+
+      {/* รวมสคริปต์ Product JSON-LD ที่ส่งมา */}
+      <JsonLd json={productLd} />
     </>
   );
 }
